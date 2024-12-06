@@ -53,7 +53,7 @@ namespace WpfApp1
             try
             {
                 username = userName.Text;
-                connectionString = $"User Id={userName.Text};Password={password.Password};Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=orclpdb)))";
+                connectionString = $"User Id={userName.Text};Password={password.Password};Data Source=localhost:1521/orcl";
                 connection = new OracleConnection(connectionString);
                 connection.Open();
                 new Window1().Show();
