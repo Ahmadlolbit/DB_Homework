@@ -10,7 +10,7 @@
         <Label
             Panel.ZIndex="2"
             Content="Welcome"
-            Margin="350,140,255,328"
+            Margin="302,148,302,320"
             FontFamily="Arial Black" FontSize="36"
             FontWeight="Bold"
             Foreground="Black"
@@ -21,7 +21,7 @@
             Width="auto" />
         <TextBox
             x:Name="userName"
-            Margin="336,211.297,0,267.703"
+            Margin="0,214,0,0"
             TextWrapping="Wrap"
             Panel.ZIndex="2"
             BorderBrush="White"
@@ -35,9 +35,9 @@
             Foreground="#FFF9F2F2"
             Height="40"
             VerticalContentAlignment="Center"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Width="272">
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Width="244">
             <TextBox.Background>
                 <SolidColorBrush
                     Color="#FF0E0D0D"
@@ -46,7 +46,7 @@
         </TextBox>
         <PasswordBox
             x:Name="password"
-            Margin="336,262,0,217"
+            Margin="0,272,0,0"
             Panel.ZIndex="2"
             FontSize="16"
             FontFamily="Arial"
@@ -63,9 +63,9 @@
             RenderTransformOrigin="0.509,-0.667"
             Foreground="#FFF9F5F5"
             Height="40"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Width="272">
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Width="244">
             <PasswordBox.Background>
                 <SolidColorBrush
                     Color="Black"
@@ -98,27 +98,22 @@
             Panel.ZIndex="3" 
             Source="Images/login_person.png" 
             RenderTransformOrigin="0.841,-0.85" />
-        
+
         <Image 
-            Margin="582,272,238,225" 
+            Margin="582,273,238,223" 
             Panel.ZIndex="3" Source="Images/login_password.png"
             RenderTransformOrigin="1.159,1.977" />
-        
+
         <Image 
-            Margin="372,-1,0,-2" 
+            Margin="-30,-1,0,-2" 
             Source="Images/wall-black-texture-background_785920-6.jpg" 
             Stretch="Fill" />
-        
+
         <Image 
-            Margin="0,0,453,-1"
+            Margin="282,130,0,128"
             Source="Images/vertical-white-watercolor-papar-texture-background-cover-card-design-overlay-aon-paint-art-background_1962-2192.jpg"
             Stretch="Fill" 
-            HorizontalAlignment="Left" />
-        
-        <Image Margin="242,-31,-67,3"
-               Source="Images/man-holding-blank-board-3d-illustration-isolated-contains-clipping-path_1401-4092-removebg-preview.png"
-               Stretch="Fill" 
-               HorizontalAlignment="Right" />
-        
+            HorizontalAlignment="Left" Width="352" />
+
     </Grid>
 </Window>
