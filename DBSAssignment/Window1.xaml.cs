@@ -11,6 +11,9 @@ using MigraDoc.Rendering;
 using WpfApp1;
 using System.Reflection;
 using System.Drawing;
+using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows.Input;
 
 namespace DBSAssignment
@@ -541,38 +544,32 @@ namespace DBSAssignment
 
         private void btn_create_report_Click(object sender, RoutedEventArgs e)
         {
-            string outputPath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Reports", "output.pdf");
+            string outputPath = @"C:\Users\AHMAD\Desktop\output\";
+            outputPath = outputPath+ GenerateRandomHash() +".pdf";
+
+            // Ensure the directory exists
+            string directoryPath = Path.GetDirectoryName(outputPath);
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
             GeneratePdfReport(dataGrid, outputPath);
             //GeneratePdfReport(dataGrid, outputPath);
         }
-
-        static bool CheckDBARole()
-        {
-            string sql = $"SELECT COUNT(*) AS dba_role_count FROM SESSION_ROLES WHERE ROLE = 'DBA'";
-
-            OracleCommand command = new OracleCommand();
-            command.Connection = MainWindow.connection; 
-            command.CommandText = sql;
-            command.CommandType = CommandType.Text;
-
-            int dbaRoleCount = Convert.ToInt32(command.ExecuteScalar());
-
-            return dbaRoleCount > 0;
-        }
-
-        private void User_Creation_Click(object sender, RoutedEventArgs e)
-        {
-            if(CheckDBARole())
-            {
-                new UserCreationWindow().Show();
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("You can not create new user because you are not DBA");
+        
+        private string GenerateRandomHash() {
+            Guid randomGuid = Guid.NewGuid();
+            string randomString = randomGuid.ToString();
+            using (SHA256 sha256 = SHA256.Create()) {
+                byte[] hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(randomString));
+                StringBuilder hashStringBuilder = new StringBuilder();
+                foreach (byte b in hashBytes) {
+                    hashStringBuilder.Append(b.ToString("x2")); // Converts to hex string
+                }
+                return hashStringBuilder.ToString();
             }
         }
-
+        
         private void btn_Home_Click(object sender, RoutedEventArgs e)
         {
             new MainWindow().Show();
