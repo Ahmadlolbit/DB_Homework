@@ -11,6 +11,9 @@ using MigraDoc.Rendering;
 using WpfApp1;
 using System.Reflection;
 using System.Drawing;
+using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows.Input;
 
 namespace DBSAssignment
@@ -305,19 +308,15 @@ namespace DBSAssignment
             Delete_btn.IsEnabled = false;
         }
 
-        private void Reset_btn_Click(object sender, RoutedEventArgs e)
-        {
+        private void Reset_btn_Click(object sender, RoutedEventArgs e){
             resetAll();
         }
-
-        private void IUD(string sqlStmt, int op)
-        {
+        private void IUD(string sqlStmt, int op){
             string msg = "";
             OracleCommand command = new OracleCommand();
             command.Connection = MainWindow.connection;
             command.CommandText = sqlStmt;
             command.CommandType = CommandType.Text;
-
             try
             {
                 switch (op)
@@ -406,8 +405,6 @@ namespace DBSAssignment
                 command.Dispose();
             }
         }
- 
-
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dataGrid.SelectedItem is DataRowView)
@@ -441,138 +438,10 @@ namespace DBSAssignment
                     }
                 }
             }
-
             Insert_btn.IsEnabled = false;
             Update_btn.IsEnabled = true;
             Delete_btn.IsEnabled = true;
         }
-
-        
-        static void GeneratePdfReport(DataGrid dataGrid, string outputFilePath)
-        {
-            // Create a new MigraDoc document
-            Document document = new Document();
-
-            // Assuming A4 page size
-            double totalA4Width = document.DefaultPageSetup.PageWidth.Centimeter;
-
-            // Define a maximum width for each page (you can adjust this value)
-            double maxPageWidth = totalA4Width;
-
-            // Calculate the number of columns per page based on the maximum page width
-            int columnsPerPage = (int)Math.Floor(maxPageWidth); // Assuming DefaultColumnWidth is a constant or calculated value
-
-            // Add headers and define columns
-            int columnCount = dataGrid.Columns.Count;
-
-            for (int pageIndex = 0; pageIndex * columnsPerPage < columnCount; pageIndex++)
-            {
-                // Add a new section for each page
-                Section section = document.AddSection();
-                section.PageSetup.Orientation = MigraDoc.DocumentObjectModel.Orientation.Landscape;
-
-                // Add a table to the section
-                MigraDoc.DocumentObjectModel.Tables.Table table = section.AddTable();
-                table.Borders.Width = 0.75;
-
-                // Add headers and define columns for the current page
-                int startIndex = pageIndex * columnsPerPage;
-                int endIndex = Math.Min(startIndex + columnsPerPage, columnCount);
-
-                for (int i = startIndex; i < endIndex; i++)
-                {
-                    string headerText = dataGrid.Columns[i].Header.ToString();
-                    double columnWidth = CalculateColumnWidth(headerText);
-
-                    // Ensure that the column width is less than or equal to the total A4 width
-                    if (columnWidth > totalA4Width)
-                    {
-                        columnWidth = totalA4Width;
-                    }
-
-                    table.AddColumn(Unit.FromCentimeter(columnWidth));
-                }
-
-                MigraDoc.DocumentObjectModel.Tables.Row headerRow = table.AddRow();
-                for (int i = startIndex; i < endIndex; i++)
-                {
-                    headerRow.Cells[i - startIndex].AddParagraph(dataGrid.Columns[i].Header.ToString());
-                }
-
-                // Add data for the current page
-                foreach (var item in (IEnumerable)dataGrid.ItemsSource)
-                {
-                    MigraDoc.DocumentObjectModel.Tables.Row dataRow = table.AddRow();
-                    for (int i = startIndex; i < endIndex; i++)
-                    {
-                        var column = dataGrid.Columns[i];
-                        TextBlock textBlock = column.GetCellContent(item) as TextBlock;
-
-                        string cellValue = textBlock?.Text ?? string.Empty;
-
-                        dataRow.Cells[i - startIndex].AddParagraph(cellValue);
-                    }
-                }
-            }
-
-            // Save the PDF document
-            PdfDocumentRenderer pdfRenderer = new PdfDocumentRenderer(true);
-            pdfRenderer.Document = document;
-            pdfRenderer.RenderDocument();
-            pdfRenderer.PdfDocument.Save(outputFilePath);
-
-            MessageBox.Show("The report completed successfully!");
-
-            Process.Start(outputFilePath);
-        }
-
-        // Function to calculate column width based on text length
-        static double CalculateColumnWidth(string text)
-        {
-            // You can adjust the factor to fine-tune the width calculation
-            const double characterWidthFactor = 0.3;
-
-            // Calculate the width based on the length of the text
-            double width = text.Length * characterWidthFactor;
-
-            return width;
-        }
-
-
-        private void btn_create_report_Click(object sender, RoutedEventArgs e)
-        {
-            string outputPath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Reports", "output.pdf");
-            GeneratePdfReport(dataGrid, outputPath);
-            //GeneratePdfReport(dataGrid, outputPath);
-        }
-
-        static bool CheckDBARole()
-        {
-            string sql = $"SELECT COUNT(*) AS dba_role_count FROM SESSION_ROLES WHERE ROLE = 'DBA'";
-
-            OracleCommand command = new OracleCommand();
-            command.Connection = MainWindow.connection; 
-            command.CommandText = sql;
-            command.CommandType = CommandType.Text;
-
-            int dbaRoleCount = Convert.ToInt32(command.ExecuteScalar());
-
-            return dbaRoleCount > 0;
-        }
-
-        private void User_Creation_Click(object sender, RoutedEventArgs e)
-        {
-            if(CheckDBARole())
-            {
-                new UserCreationWindow().Show();
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("You can not create new user because you are not DBA");
-            }
-        }
-
         private void btn_Home_Click(object sender, RoutedEventArgs e)
         {
             new MainWindow().Show();
