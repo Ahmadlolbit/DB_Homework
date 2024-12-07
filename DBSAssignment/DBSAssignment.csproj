@@ -235,12 +235,23 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\man-holding-blank-board-3d-illustration-isolated-contains-clipping-path_1401-4092-removebg-preview.png" />
-    <Resource Include="Images\network-database-connected-with-world-icon-isolated-white-background_771335-36454-removebg-preview.png" />
-    <Resource Include="Images\person-pointing-with-finger-removebg-preview.png" />
     <Resource Include="Images\user-icon-symbol-3d-design-concept_573652-869-removebg-preview.png" />
     <Resource Include="Images\vertical-break-white-wall-3d-illustration_291814-1692.jpg" />
     <Resource Include="Images\vertical-white-watercolor-papar-texture-background-cover-card-design-overlay-aon-paint-art-background_1962-2192.jpg" />
     <Resource Include="Images\wall-black-texture-background_785920-6.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\Computer Pattern.png" />
+    <Content Include="Images\cool-background.svg" />
+    <Content Include="Images\cool-background.svg.png" />
+    <Content Include="Images\Ether Pattern.png" />
+    <Content Include="Images\Gulf Gradient.png" />
+    <Content Include="Images\Gulf Gradient.svg" />
+    <Content Include="Images\Ocean Smooth Gradient.png" />
+    <Content Include="Images\Phoenix Gradient.svg" />
+    <Content Include="Images\Radar Pattern.png" />
+    <Content Include="Images\user-pen-svgrepo-com.svg" />
+    <Content Include="Images\Zeller.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Text.Json.6.0.1\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.1\build\System.Text.Json.targets')" />

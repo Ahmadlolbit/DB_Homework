@@ -7,36 +7,118 @@
         mc:Ignorable="d"
         Title="Login Form" Height="550" Width="850" Loaded="Main_Window_Loaded">
     <Grid>
-        <Label Panel.ZIndex="2" Content="Welcome" Margin="350,140,255,328" FontFamily="Arial Black" FontSize="36" FontWeight="Bold" Foreground="Black" Background="{x:Null}" IsEnabled="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="auto"/>
-        <TextBox x:Name="userName" Margin="336,211.297,0,267.703" TextWrapping="Wrap" Panel.ZIndex="2" BorderBrush="White" FontFamily="Arial" FontSize="16" UseLayoutRounding="False" Cursor="IBeam" ToolTip="Username" Padding="5,0,0,0" KeyDown="userName_KeyDown" Foreground="#FFF9F2F2" Height="40" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" Width="272" >
+        <Label
+            Panel.ZIndex="2"
+            Content="Welcome"
+            Margin="350,140,255,328"
+            FontFamily="Arial Black" FontSize="36"
+            FontWeight="Bold"
+            Foreground="Black"
+            Background="{x:Null}"
+            IsEnabled="False"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Width="auto" />
+        <TextBox
+            x:Name="userName"
+            Margin="336,211.297,0,267.703"
+            TextWrapping="Wrap"
+            Panel.ZIndex="2"
+            BorderBrush="White"
+            FontFamily="Arial"
+            FontSize="16"
+            UseLayoutRounding="False"
+            Cursor="IBeam"
+            ToolTip="Username"
+            Padding="5,0,0,0"
+            KeyDown="userName_KeyDown"
+            Foreground="#FFF9F2F2"
+            Height="40"
+            VerticalContentAlignment="Center"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Width="272">
             <TextBox.Background>
-                <SolidColorBrush Color="#FF0E0D0D" Opacity="0.5"/>
+                <SolidColorBrush
+                    Color="#FF0E0D0D"
+                    Opacity="0.5" />
             </TextBox.Background>
         </TextBox>
-        <PasswordBox x:Name="password" Margin="336,262,0,217" Panel.ZIndex="2" FontSize="16" FontFamily="Arial" BorderBrush="White" VerticalContentAlignment="Center" Cursor="IBeam" ToolTip="Password" KeyDown="password_KeyDown" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" AutomationProperties.HelpText="Password" AutomationProperties.IsColumnHeader="True" Password="" RenderTransformOrigin="0.509,-0.667" Foreground="#FFF9F5F5" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center" Width="272">
+        <PasswordBox
+            x:Name="password"
+            Margin="336,262,0,217"
+            Panel.ZIndex="2"
+            FontSize="16"
+            FontFamily="Arial"
+            BorderBrush="White"
+            VerticalContentAlignment="Center"
+            Cursor="IBeam"
+            ToolTip="Password"
+            KeyDown="password_KeyDown"
+            ScrollViewer.HorizontalScrollBarVisibility="Auto"
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            AutomationProperties.HelpText="Password"
+            AutomationProperties.IsColumnHeader="True"
+            Password=""
+            RenderTransformOrigin="0.509,-0.667"
+            Foreground="#FFF9F5F5"
+            Height="40"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Width="272">
             <PasswordBox.Background>
-                <SolidColorBrush Color="Black" Opacity="0.5"/>
+                <SolidColorBrush
+                    Color="Black"
+                    Opacity="0.5" />
             </PasswordBox.Background>
         </PasswordBox>
-        <Button x:Name="loginButton" Content="Login" Margin="418.516,323.521,317.484,153.979" Panel.ZIndex="2" BorderBrush="{x:Null}" UseLayoutRounding="False" Foreground="White" FontSize="22" FontFamily="Arial" FontWeight="Bold" Cursor="Hand" ToolTip="Click to login" Click="Button_Click" VerticalContentAlignment="Center">
+        <Button
+            x:Name="loginButton"
+            Content="Login"
+            Margin="418.516,323.521,317.484,153.979"
+            Panel.ZIndex="2"
+            BorderBrush="{x:Null}"
+            UseLayoutRounding="False"
+            Foreground="White"
+            FontSize="22"
+            FontFamily="Arial"
+            FontWeight="Bold"
+            Cursor="Hand"
+            ToolTip="Click to login"
+            Click="Button_Click"
+            VerticalContentAlignment="Center">
             <Button.Background>
-                <SolidColorBrush Color="Black" Opacity="1"/>
+                <SolidColorBrush
+                    Color="Black"
+                    Opacity="1" />
             </Button.Background>
         </Button>
-        <Image Margin="582,222,238,275" Panel.ZIndex="3" Source="Images/login_person.png" RenderTransformOrigin="0.841,-0.85"/>
-        <Image Margin="582,272,238,225" Panel.ZIndex="3" Source="Images/login_password.png" RenderTransformOrigin="1.159,1.977"/>
-        <Image Margin="372,-1,0,-2" Source="Images/wall-black-texture-background_785920-6.jpg" Stretch="Fill"/>
-        <Image Margin="0,0,453,-1" Source="Images/vertical-white-watercolor-papar-texture-background-cover-card-design-overlay-aon-paint-art-background_1962-2192.jpg" Stretch="Fill" HorizontalAlignment="Left"/>
-        <Image Margin="242,-31,-67,3" Source="Images/man-holding-blank-board-3d-illustration-isolated-contains-clipping-path_1401-4092-removebg-preview.png" Stretch="Fill" HorizontalAlignment="Right"/>
-        <Image Margin="0,0,395,-40" Source="Images/person-pointing-with-finger-removebg-preview.png" Stretch="Fill" HorizontalAlignment="Left"/>
-        <Image Margin="358,361,268,34" Source="Images/network-database-connected-with-world-icon-isolated-white-background_771335-36454-removebg-preview.png" Stretch="Fill">
-            <Image.OpacityMask>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black" Offset="0.759"/>
-                    <GradientStop Color="#FF851B1B" Offset="1"/>
-                </LinearGradientBrush>
-            </Image.OpacityMask>
-        </Image>
-
+        <Image 
+            Margin="582,222,238,275"
+            Panel.ZIndex="3" 
+            Source="Images/login_person.png" 
+            RenderTransformOrigin="0.841,-0.85" />
+        
+        <Image 
+            Margin="582,272,238,225" 
+            Panel.ZIndex="3" Source="Images/login_password.png"
+            RenderTransformOrigin="1.159,1.977" />
+        
+        <Image 
+            Margin="372,-1,0,-2" 
+            Source="Images/wall-black-texture-background_785920-6.jpg" 
+            Stretch="Fill" />
+        
+        <Image 
+            Margin="0,0,453,-1"
+            Source="Images/vertical-white-watercolor-papar-texture-background-cover-card-design-overlay-aon-paint-art-background_1962-2192.jpg"
+            Stretch="Fill" 
+            HorizontalAlignment="Left" />
+        
+        <Image Margin="242,-31,-67,3"
+               Source="Images/man-holding-blank-board-3d-illustration-isolated-contains-clipping-path_1401-4092-removebg-preview.png"
+               Stretch="Fill" 
+               HorizontalAlignment="Right" />
+        
     </Grid>
 </Window>
